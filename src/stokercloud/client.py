@@ -3,7 +3,7 @@ from http.client import HTTPResponse
 from urllib import request
 from urllib.parse import urljoin
 import logging
-
+import time
 from stokercloud.controller_data import ControllerData
 
 logger = logging.getLogger(__name__)
@@ -16,11 +16,13 @@ class TokenInvalid(Exception):
 class Client:
     BASE_URL = "http://www.stokercloud.dk/"
 
-    def __init__(self, name: str, password: str = None):
+    def __init__(self, name: str, password: str = None, cache_time_seconds: int = 10):
         self.name = name
         self.password = password
         self.token = None
         self.state = None
+        self.last_fetch = None
+        self.cache_time_seconds = cache_time_seconds
 
     def refresh_token(self):
         with request.urlopen(
@@ -48,5 +50,11 @@ class Client:
             self.refresh_token()
             return self.make_request(url, *args, **kwargs)
 
+    def update_controller_data(self):
+        self.cached_data = self.make_request("v2/dataout2/controllerdata2.php")
+        self.last_fetch = time.time()
+
     def controller_data(self):
-        return ControllerData(self.make_request("v2/dataout2/controllerdata2.php"))
+        if not self.last_fetch or (time.time() - self.last_fetch) > self.cache_time_seconds:
+            self.update_controller_data()
+        return ControllerData(self.cached_data)

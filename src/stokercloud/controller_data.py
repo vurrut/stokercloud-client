@@ -19,6 +19,16 @@ class Unit(Enum):
     GRAM = 'g'
 
 
+class State(Enum):
+    POWER = 'state_5'
+    HOT_WATER = 'state_7'
+    IGNITION_1 = 'state_2'
+    OFF = 'state_14'
+
+
+STATE_BY_VALUE = {key.value: key for key in State}
+
+
 class Value:
     def __init__(self, value, unit):
         self.value = decimal.Decimal(value)
@@ -67,9 +77,24 @@ class ControllerData:
         return self.data['serial']
 
     @property
-    def boiler_temperature(self):
-        return Value(self.get_sub_item('frontdata', 'boilertemp')['value'], Unit.DEGREE)
+    def boiler_temperature_current(self):
+        return Value(self.get_sub_item('frontdata', 'boilertemp')['value'], Unit.DEGREE)\
+
+    @property
+    def boiler_temperature_requested(self):
+        return Value(self.get_sub_item('frontdata', '-wantedboilertemp')['value'], Unit.DEGREE)
 
     @property
     def boiler_kwh(self):
         return Value(self.get_sub_item('boilerdata', '5')['value'], Unit.KWH)
+
+    @property
+    def state(self):
+        return STATE_BY_VALUE.get(self.data['miscdata']['state']['value'])
+
+    @property
+    def hotwater_temperature_current(self):
+        return Value(self.get_sub_item('frontdata', 'dhw')['value'], Unit.DEGREE)
+
+    def hotwater_temperature_requested(self):
+        return Value(self.get_sub_item('frontdata', 'dhwwanted')['value'], Unit.DEGREE)

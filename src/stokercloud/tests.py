@@ -1,7 +1,7 @@
 import json
 import pytest
 
-from stokercloud.controller_data import ControllerData, PowerState, NotConnectedException
+from stokercloud.controller_data import ControllerData, PowerState, NotConnectedException, Unit, Value
 
 
 def test_controller_data():
@@ -360,12 +360,17 @@ def test_controller_data():
         },
         "notconnected": 0,
         "newuser": 0,
+        "serial": "12345",
         "metrics": "EUR"
     }
     """
     cd = ControllerData(json.loads(test_data))
 
+    assert cd.running == PowerState.ON
     assert cd.alarm == PowerState.OFF
+    assert cd.serial_number == "12345"
+    assert cd.boiler_kwh == Value("3.8", Unit.KWH)
+
 
 def test_controller_data_connected():
     test_data = '{"notconnected": 1}'

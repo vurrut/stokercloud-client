@@ -96,5 +96,6 @@ class ControllerData:
     def hotwater_temperature_current(self):
         return Value(self.get_sub_item('frontdata', 'dhw')['value'], Unit.DEGREE)
 
+    @property
     def hotwater_temperature_requested(self):
         return Value(self.get_sub_item('frontdata', 'dhwwanted')['value'], Unit.DEGREE)

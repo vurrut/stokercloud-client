@@ -99,3 +99,7 @@ class ControllerData:
     @property
     def hotwater_temperature_requested(self):
         return Value(self.get_sub_item('frontdata', 'dhwwanted')['value'], Unit.DEGREE)
+
+    @property
+    def consumption_total(self):
+        return Value(self.get_sub_item('hopperdata', '4')['value'], Unit.KILO_GRAM)

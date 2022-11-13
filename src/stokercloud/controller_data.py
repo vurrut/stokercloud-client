@@ -23,6 +23,8 @@ class State(Enum):
     POWER = 'state_5'
     HOT_WATER = 'state_7'
     IGNITION_1 = 'state_2'
+    IGNITION_2 = 'state_4'
+    FAULT_IGNITION = 'state_13'
     OFF = 'state_14'
 
 

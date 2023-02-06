@@ -105,3 +105,7 @@ class ControllerData:
     @property
     def consumption_total(self):
         return Value(self.get_sub_item('hopperdata', '4')['value'], Unit.KILO_GRAM)
+    
+    @property
+    def consumption_day(self):
+        return Value(self.get_sub_item('hopperdata', '3')['value'], Unit.KILO_GRAM)

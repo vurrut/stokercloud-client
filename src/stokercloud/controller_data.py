@@ -81,7 +81,7 @@ class ControllerData:
 
     @property
     def boiler_temperature_current(self):
-        return Value(self.get_sub_item('frontdata', 'boilertemp')['value'], Unit.DEGREE)\
+        return Value(self.get_sub_item('frontdata', 'boilertemp')['value'], Unit.DEGREE)
 
     @property
     def boiler_temperature_requested(self):
@@ -113,4 +113,8 @@ class ControllerData:
 
     @property
     def hopper_amount(self):
-        return STATE_BY_VALUE.get(self.data['miscdata']['hopperdistance']['value'], Unit.PERCENT)
+        return Value(self.get_sub_item('miscdata', 'hopperdistance')['value'], Unit.DEGREE)
+    
+    @property
+    def boiler_percent(self):
+        return Value(self.get_sub_item('boilerdata', '6')['value'], Unit.PERCENT)

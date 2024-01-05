@@ -13,7 +13,7 @@ class PowerState(Enum):
 
 class Unit(Enum):
     KWH = 'kwh'
-    PERCENT = 'pct'
+    PERCENT = '%'
     DEGREE = 'deg'
     KILO_GRAM = 'kg'
     GRAM = 'g'
@@ -110,3 +110,7 @@ class ControllerData:
     @property
     def consumption_day(self):
         return Value(self.get_sub_item('hopperdata', '3')['value'], Unit.KILO_GRAM)
+
+    @property
+    def hopper_amount(self):
+        return Value(self.data['miscdata']['hopperdistance']['value'], Unit.PERCENT)

@@ -113,4 +113,4 @@ class ControllerData:
 
     @property
     def hopper_amount(self):
-        return Value(self.data['miscdata']['hopperdistance']['value'], Unit.PERCENT)
+        return STATE_BY_VALUE.get(self.data['miscdata']['hopperdistance']['value'], Unit.PERCENT)

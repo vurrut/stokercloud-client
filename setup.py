@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="stokercloud-client",
-    version="0.0.6",
+    version="0.0.7",
     author="vurrut",
     author_email="calvoredondo@gmail.com",
     description="Python stokercloud client",

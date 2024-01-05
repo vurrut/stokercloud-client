@@ -115,7 +115,7 @@ class ControllerData:
     def hopper_amount(self):
         return Value(self.get_sub_item('miscdata', 'hopperdistance'), Unit.PERCENT)
     
-       @property
+    @property
     def boiler_percent(self):
         return Value(self.data('miscdata', 'outputpct'))
     

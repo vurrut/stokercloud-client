@@ -117,7 +117,7 @@ class ControllerData:
     
        @property
     def boiler_percent(self):
-        return Value(self.get_sub_item('miscdata', 'outputpct'))
+        return Value(self.data('miscdata', 'outputpct'))
     
     @property
     def boiler_photosensor(self):

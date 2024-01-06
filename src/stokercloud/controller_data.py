@@ -26,6 +26,7 @@ class State(Enum):
     IGNITION_2 = 'state_4'
     FAULT_IGNITION = 'state_13'
     STOPPED_EXTCONTACT = 'state_24'
+    COMPRESSOR_CLEANING = 'state_43'
     OFF = 'state_14'
 
 

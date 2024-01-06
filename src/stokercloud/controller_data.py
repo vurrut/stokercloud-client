@@ -114,7 +114,7 @@ class ControllerData:
 
     @property
     def hopper_distance(self):
-        return Value(self.data['miscdata']['hopperdistance'], Unit.DEGREE)
+        return Value(self.data['miscdata']['hopperdistance'], Unit.PERCENT)
     
     @property
     def output_percentage(self):
@@ -123,3 +123,39 @@ class ControllerData:
     @property
     def boiler_photosensor(self):
         return Value(self.get_sub_item('boilerdata', '6')['value'], Unit.PERCENT)
+    
+    @property
+    def dhw_on(self):
+        return Value(self.data['leftoutput']['output-1']['val'], Unit(self.data['leftoutput']['output-1']['unit']))
+
+    @property
+    def dwh_pump(self):
+        return Value(self.data['leftoutput']['output-2']['val'], Unit(self.data['leftoutput']['output-2']['unit']))
+
+    @property
+    def output_3(self):
+        return Value(self.data['leftoutput']['output-3']['val'], Unit(self.data['leftoutput']['output-3']['unit']))
+
+    @property
+    def output_4(self):
+        return Value(self.data['leftoutput']['output-4']['val'], Unit(self.data['leftoutput']['output-4']['unit']))
+
+    @property
+    def output_5(self):
+        return Value(self.data['leftoutput']['output-5']['val'], Unit(self.data['leftoutput']['output-5']['unit']))
+
+    @property
+    def output_6(self):
+        return Value(self.data['leftoutput']['output-6']['val'], Unit(self.data['leftoutput']['output-6']['unit']))
+
+    @property
+    def compressor_percent(self):
+        return Value(self.data['leftoutput']['output-7']['val'], Unit(self.data['leftoutput']['output-7']['unit']))
+
+    @property
+    def output_8(self):
+        return Value(self.data['leftoutput']['output-8']['val'], Unit(self.data['leftoutput']['output-8']['unit']))
+
+    @property
+    def output_9(self):
+        return Value(self.data['leftoutput']['output-9']['val'], Unit(self.data['leftoutput']['output-9']['unit']))

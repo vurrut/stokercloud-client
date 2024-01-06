@@ -112,13 +112,13 @@ class ControllerData:
         return Value(self.get_sub_item('hopperdata', '3')['value'], Unit.KILO_GRAM)
 
     @property
-    def hopper_amount(self):
-        return Value(self.get_sub_item('miscdata', 'hopperdistance'), Unit.PERCENT)
+    def hopper_distance(self):
+        return Value(self.data['miscdata']['hopperdistance'], Unit.DEGREE)
     
     @property
-    def boiler_percent(self):
-        return Value(self.data('miscdata', 'outputpct'))
-    
+    def output_percentage(self):
+        return Value(self.data['miscdata']['outputpct'], Unit.PERCENT)
+
     @property
     def boiler_photosensor(self):
         return Value(self.get_sub_item('boilerdata', '6')['value'], Unit.PERCENT)
